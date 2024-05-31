@@ -1,0 +1,30 @@
+
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="{{ url_for('static', filename='style/login.css') }}" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded shadow-md w-96">
+        <h2 class="text-2xl font-bold mb-4 ">Login</h2>
+        <form action="/login" method="POST">
+            <div class="mb-4">
+                <label for="username" class="red text-gray-700 font-bold mb-2">Username</label>
+                <input type="text" id="username" name="username" class="border border-gray-300 rounded-md px-3 py-2 w-full" required>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 font-bold mb-2">Password</label>
+                <input type="password" id="password" name="password" class="border border-gray-300 rounded-md px-3 py-2 w-full" required>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-red-500 text-sm" id="error-message">{{error}}</span>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Login</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+version: "3.9"
+services:
+  python_test_nginx:
+    container_name: python_test_nginx
+    image: nginx
+    ports:
+      - "${WEB:-80}:8000"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    restart: no
+  python_test:
+    container_name: python_test
+    image: python:latest
+    volumes:
+      - ./:/usr/src/app
+    working_dir: /usr/src/app
+    command: >
+      sh -c "pip install -r docker/python/requirements.txt && python3 docker/python/run.py"
+    ports:
+      - "8001:8000"
+    restart: no
+  app:
+    container_name: pymysqlclient
+    build:
+      context: .
+      dockerfile: ./docker/python/Dockerfile
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=python_sample
+      - MYSQL_USER=docker
+      - MYSQL_PASSWORD=docker
+    depends_on:
+      - db
+    restart: unless-stopped
+  db:
+    container_name: db
+    build:
+        context: .
+        dockerfile: ./docker/mysql/Dockerfile
+    ports:
+        - "3306:3306"
+    environment:
+        - MYSQL_DATABASE=python_sample
+        - MYSQL_USER=docker
+        - MYSQL_PASSWORD=docker
+        - MYSQL_ROOT_PASSWORD=docker
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=docker
+      - PMA_PASSWORD=docker
+      - MYSQL_ROOT_PASSWORD=docker
+    depends_on:
+      - db
