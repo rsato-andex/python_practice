@@ -8,7 +8,7 @@ login_manager = LoginManager()
 migrate = Migrate()
 
 def create_app():
-    app = Flask(__name__, static_folder='static/build')
+    app = Flask(__name__, static_folder='static')
     app.secret_key = 'your_secret_key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://docker:docker@db/python_sample'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
