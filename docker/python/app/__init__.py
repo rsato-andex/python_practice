@@ -33,4 +33,7 @@ def create_app():
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
+    from .react import react as react_blueprint
+    app.register_blueprint(react_blueprint, url_prefix='/react')
+
     return app

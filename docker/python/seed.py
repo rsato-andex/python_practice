@@ -4,7 +4,7 @@ from app.Models.Manager_Model import db, Manager
 
 # Flaskアプリケーションの設定
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://docker:docker@db/python_sample'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://docker:docker@localhost/python_sample'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # アプリケーションコンテキストを設定
