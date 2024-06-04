@@ -1,2 +1,3 @@
 node_modules
 my-react-app\build
+docker\python\app\static\build
