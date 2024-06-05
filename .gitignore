@@ -2,3 +2,5 @@ node_modules
 my-react-app\build
 docker\python\app\static\build
 docker\python\app\__pycache__
+package-lock.json
+node_modules/.package-lock.json
