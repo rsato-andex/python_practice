@@ -1,3 +1,4 @@
 node_modules
 my-react-app\build
 docker\python\app\static\build
+docker\python\app\__pycache__
