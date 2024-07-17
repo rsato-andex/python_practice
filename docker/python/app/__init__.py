@@ -20,12 +20,12 @@ def create_app():
 
     with app.app_context():
         from .Models.Office_Model import Office
-        from .Models.Manager_Model import Manager
+        from .Models.System_Manager_Model import System_Manager
         from .Models.Stuff_Model import Stuff
         from .Models.User_Model import User
         db.create_all()
 
-    login_manager.user_loader(lambda user_id: Manager.query.get(int(user_id)))
+    login_manager.user_loader(lambda user_id: Stuff.query.get(int(user_id)))
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)

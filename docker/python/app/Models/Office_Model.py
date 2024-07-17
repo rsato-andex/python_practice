@@ -6,9 +6,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class Office(db.Model, UserMixin):
     __tablename__ = 'office'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    manager_id = db.Column(db.Integer, nullable=False)
     address = db.Column(db.String(120), unique=True, nullable=False)
-    call_number = db.Column(db.String(120), unique=True, nullable=False)
+    call_number = db.Column(db.String(15), unique=True, nullable=False)
 
     @property
     def password(self):

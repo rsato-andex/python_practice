@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from flask_login import login_required, current_user
-from .Models.Manager_Model import Manager
+from .Models.User_Model import User
 
 main = Blueprint('main', __name__)
 
@@ -19,5 +19,5 @@ def home():
 @login_required
 def user_update():
     username = session.get('username', '')
-    user_info = Manager.query.filter_by(username=username).first()
+    user_info = User.query.filter_by(username=username).first()
     return render_template('user_form.html', user_info=user_info)

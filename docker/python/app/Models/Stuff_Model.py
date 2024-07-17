@@ -6,10 +6,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class Stuff(db.Model, UserMixin):
     __tablename__ = 'stuff'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    manager_id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True, nullable=False)
     mail = db.Column(db.String(120), unique=True, nullable=False)
     _password = db.Column('password', db.String(128), nullable=False)
+    office_id = db.Column(db.Integer, autoincrement=False)
+    president_flg = db.Column(db.Integer)
 
     @property
     def password(self):

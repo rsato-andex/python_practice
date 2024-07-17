@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash, session
 from flask_login import login_user, logout_user, login_required
-from .Models.Manager_Model import Manager
+from .Models.User_Model import User
 
 auth = Blueprint('auth', __name__)
 
@@ -10,7 +10,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        users = Manager.query.filter_by(username=username).all()
+        users = User.query.filter_by(username=username).all()
         for user in users:
             if user and user.verify_password(password):
                 login_user(user)
